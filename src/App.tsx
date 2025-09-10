@@ -5,8 +5,7 @@ import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/ca
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
 import { 
-  HeroHighlight, 
-  TextRevealCard 
+  HeroHighlight
 } from "@/components/ui/aceternity-ui"
 import { BackgroundBeams } from "@/components/ui/background-beams"
 import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect"

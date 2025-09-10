@@ -1,13 +1,11 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
 import { 
-  BackgroundGrid, 
   HeroHighlight, 
-  Highlight,
   TextRevealCard 
 } from "@/components/ui/aceternity-ui"
 import { BackgroundBeams } from "@/components/ui/background-beams"
@@ -238,34 +236,17 @@ function App() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
-                <TextRevealCard
-                  text={
-                    <Card className="bg-white/5 border-white/10 hover:bg-white/10 transition-all duration-300">
-                      <CardHeader>
-                        <div className="w-12 h-12 bg-white/10 rounded-lg flex items-center justify-center mb-4">
-                          <span className="text-2xl">{feature.icon}</span>
-                        </div>
-                        <CardTitle className="text-white">{feature.title}</CardTitle>
-                        <CardDescription className="text-white/70">
-                          {feature.description}
-                        </CardDescription>
-                      </CardHeader>
-                    </Card>
-                  }
-                  revealText={
-                    <Card className="bg-white/10 border-white/20">
-                      <CardHeader>
-                        <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center mb-4">
-                          <span className="text-2xl">{feature.icon}</span>
-                        </div>
-                        <CardTitle className="text-white">{feature.title}</CardTitle>
-                        <CardDescription className="text-white/80">
-                          {feature.description}
-                        </CardDescription>
-                      </CardHeader>
-                    </Card>
-                  }
-                />
+                <Card className="bg-white/5 border-white/10 hover:bg-white/10 transition-all duration-300">
+                  <CardHeader>
+                    <div className="w-12 h-12 bg-white/10 rounded-lg flex items-center justify-center mb-4">
+                      <span className="text-2xl">{feature.icon}</span>
+                    </div>
+                    <CardTitle className="text-white">{feature.title}</CardTitle>
+                    <CardDescription className="text-white/70">
+                      {feature.description}
+                    </CardDescription>
+                  </CardHeader>
+                </Card>
               </motion.div>
             ))}
           </div>

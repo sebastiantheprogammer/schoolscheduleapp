@@ -25,9 +25,10 @@ interface NavItemsProps {
   items: {
     name: string;
     link: string;
+    onClick?: () => void;
   }[];
   className?: string;
-  onItemClick?: () => void;
+  onItemClick?: (item: any) => void;
 }
 
 interface MobileNavProps {
@@ -122,8 +123,13 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
     >
       {items.map((item, idx) => (
         <a
-          onClick={onItemClick}
-          className="relative px-4 py-2 text-white"
+          onClick={(e) => {
+            if (item.onClick) {
+              e.preventDefault();
+              onItemClick?.(item);
+            }
+          }}
+          className="relative px-4 py-2 text-white cursor-pointer hover:text-white/80 transition-colors"
           key={`link-${idx}`}
           href={item.link}
         >
@@ -256,8 +262,8 @@ export const NavbarLogo = () => {
       href="#"
       className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal text-white"
     >
-      <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-        <span className="text-white font-bold text-sm">SS</span>
+      <div className="w-8 h-8 bg-white border border-black rounded-lg flex items-center justify-center">
+        <span className="text-black font-bold text-sm">SS</span>
       </div>
       <span className="font-medium text-white">ScheduleSnap</span>
     </a>

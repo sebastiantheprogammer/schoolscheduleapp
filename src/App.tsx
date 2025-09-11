@@ -20,10 +20,13 @@ import {
   MobileNavToggle,
   MobileNavMenu,
 } from "@/components/ui/resizable-navbar"
+import { HoverEffect } from "@/components/ui/card-hover-effect"
+import { ScheduleDemo } from "@/components/ScheduleDemo"
 
 function App() {
   const [isUploading, setIsUploading] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [showDemo, setShowDemo] = useState(false)
 
   const handleUpload = () => {
     setIsUploading(true)
@@ -34,8 +37,12 @@ function App() {
   const navItems = [
     { name: "Features", link: "#features" },
     { name: "How It Works", link: "#how-it-works" },
-    { name: "Demo", link: "#demo" },
+    { name: "Demo", link: "#demo", onClick: () => setShowDemo(true) },
   ]
+
+  if (showDemo) {
+    return <ScheduleDemo onBack={() => setShowDemo(false)} />;
+  }
 
   return (
     <div className="min-h-screen bg-black text-white relative overflow-hidden">
@@ -46,7 +53,11 @@ function App() {
         {/* Desktop Navigation */}
         <NavBody>
           <NavbarLogo />
-          <NavItems items={navItems} />
+          <NavItems items={navItems} onItemClick={(item) => {
+            if (item.onClick) {
+              item.onClick();
+            }
+          }} />
           <div className="flex items-center gap-4">
             <NavbarButton variant="secondary">Login</NavbarButton>
             <NavbarButton variant="primary">Get Started</NavbarButton>
@@ -71,7 +82,13 @@ function App() {
               <a
                 key={`mobile-link-${idx}`}
                 href={item.link}
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={(e) => {
+                  if (item.onClick) {
+                    e.preventDefault();
+                    item.onClick();
+                  }
+                  setIsMobileMenuOpen(false);
+                }}
                 className="relative text-neutral-300 hover:text-white transition-colors"
               >
                 <span className="block">{item.name}</span>
@@ -151,7 +168,12 @@ function App() {
             >
               {isUploading ? "Creating Your App..." : "Upload Schedule Photo"}
             </Button>
-            <Button variant="outline" size="lg" className="w-full sm:w-auto border-white text-white bg-transparent hover:bg-white hover:text-black">
+            <Button 
+              variant="outline" 
+              size="lg" 
+              className="w-full sm:w-auto border-white text-white bg-transparent hover:bg-white hover:text-black"
+              onClick={() => setShowDemo(true)}
+            >
               View Demo
             </Button>
           </motion.div>
@@ -195,60 +217,38 @@ function App() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                icon: "📱",
-                title: "No Phone Needed",
-                description: "Access your schedule on any Chromebook or school computer. No need to sneak your phone out during class."
-              },
-              {
-                icon: "⚡",
-                title: "Instant Setup",
-                description: "Upload a photo of your schedule and get a beautiful, personalized app in under 30 seconds."
-              },
-              {
-                icon: "🎯",
-                title: "Always Updated",
-                description: "Real-time updates show your current class, next class, and remaining time in each period."
-              },
-              {
-                icon: "🌍",
-                title: "Multi-Timezone",
-                description: "Perfect for students with different schedules or those who travel between time zones."
-              },
-              {
-                icon: "📚",
-                title: "All Schools Supported",
-                description: "Works with any NYC school schedule format. From block schedules to traditional periods."
-              },
-              {
-                icon: "🔒",
-                title: "Privacy First",
-                description: "Your schedule data stays private. No accounts required, no data collection, just your schedule when you need it."
-              }
-            ].map((feature, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <Card className="bg-white/5 border-white/10 hover:bg-white/10 transition-all duration-300">
-                  <CardHeader>
-                    <div className="w-12 h-12 bg-white/10 rounded-lg flex items-center justify-center mb-4">
-                      <span className="text-2xl">{feature.icon}</span>
-                    </div>
-                    <CardTitle className="text-white">{feature.title}</CardTitle>
-                    <CardDescription className="text-white/70">
-                      {feature.description}
-                    </CardDescription>
-                  </CardHeader>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
+          <HoverEffect items={[
+            {
+              title: "📱 No Phone Needed",
+              description: "Access your schedule on any Chromebook or school computer. No need to sneak your phone out during class.",
+              link: "#"
+            },
+            {
+              title: "⚡ Instant Setup",
+              description: "Upload a photo of your schedule and get a beautiful, personalized app in under 30 seconds.",
+              link: "#"
+            },
+            {
+              title: "🎯 Always Updated",
+              description: "Real-time updates show your current class, next class, and remaining time in each period.",
+              link: "#"
+            },
+            {
+              title: "🌍 Multi-Timezone",
+              description: "Perfect for students with different schedules or those who travel between time zones.",
+              link: "#"
+            },
+            {
+              title: "📚 All Schools Supported",
+              description: "Works with any NYC school schedule format. From block schedules to traditional periods.",
+              link: "#"
+            },
+            {
+              title: "🔒 Privacy First",
+              description: "Your schedule data stays private. No accounts required, no data collection, just your schedule when you need it.",
+              link: "#"
+            }
+          ]} />
         </div>
       </section>
 
@@ -307,6 +307,7 @@ function App() {
         </div>
       </section>
 
+
       {/* CTA Section */}
       <section id="get-started" className="py-16 px-4 sm:px-6 lg:px-8 bg-white/5 relative">
         <div className="max-w-4xl mx-auto text-center">
@@ -326,8 +327,13 @@ function App() {
               <Button size="lg" className="bg-white text-black hover:bg-white/90">
                 Create Your Schedule App
               </Button>
-              <Button size="lg" variant="outline" className="border-white text-white bg-transparent hover:bg-white hover:text-blue-600">
-                Learn More
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="border-white text-white bg-transparent hover:bg-white hover:text-blue-600"
+                onClick={() => setShowDemo(true)}
+              >
+                View Demo
               </Button>
             </div>
           </motion.div>

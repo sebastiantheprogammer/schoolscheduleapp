@@ -25,10 +25,15 @@ interface NavItemsProps {
   items: {
     name: string;
     link: string;
+    onClick?: () => void;
   }[];
   className?: string;
+<<<<<<< HEAD
   onItemClick?: () => void;
   onDemoClick?: () => void;
+=======
+  onItemClick?: (item: any) => void;
+>>>>>>> 85de23d685c9fa673d294792eae6519f6f7f0087
 }
 
 interface MobileNavProps {
@@ -122,6 +127,7 @@ export const NavItems = ({ items, className, onItemClick, onDemoClick }: NavItem
       )}
     >
       {items.map((item, idx) => (
+<<<<<<< HEAD
         item.link === "demo" ? (
           <button
             onClick={onDemoClick}
@@ -140,6 +146,21 @@ export const NavItems = ({ items, className, onItemClick, onDemoClick }: NavItem
             <span className="relative z-20">{item.name}</span>
           </a>
         )
+=======
+        <a
+          onClick={(e) => {
+            if (item.onClick) {
+              e.preventDefault();
+              onItemClick?.(item);
+            }
+          }}
+          className="relative px-4 py-2 text-white cursor-pointer hover:text-white/80 transition-colors"
+          key={`link-${idx}`}
+          href={item.link}
+        >
+          <span className="relative z-20">{item.name}</span>
+        </a>
+>>>>>>> 85de23d685c9fa673d294792eae6519f6f7f0087
       ))}
     </motion.div>
   );

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Button } from "@/components/ui/button"
-import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
 import { 
@@ -22,6 +22,8 @@ import {
   MobileNavToggle,
   MobileNavMenu,
 } from "@/components/ui/resizable-navbar"
+import { HoverEffect } from "@/components/ui/card-hover-effect"
+import { ScheduleDemo } from "@/components/ScheduleDemo"
 
 function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -59,8 +61,9 @@ function App() {
   // Show demo if active
   if (showDemo) {
     return (
-      <ScheduleApp 
+      <ScheduleDemo 
         onBack={handleDemoBack}
+        onComplete={handleOnboardingComplete}
       />
     )
   }
@@ -214,7 +217,7 @@ function App() {
               variant="outline" 
               size="lg" 
               className="w-full sm:w-auto border-white text-white bg-transparent hover:bg-white hover:text-black"
-              onClick={() => window.open('https://github.com/sebastiantheprogammer/schoolscheduleapp', '_blank')}
+              onClick={handleDemoClick}
             >
               View Demo
             </Button>
@@ -259,60 +262,38 @@ function App() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {[
-              {
-                icon: "📱",
-                title: "No Phone Needed",
-                description: "Access your schedule on any Chromebook or school computer. No need to sneak your phone out during class."
-              },
-              {
-                icon: "⚡",
-                title: "Instant Setup",
-                description: "Upload a photo of your schedule and get a beautiful, personalized app in under 30 seconds."
-              },
-              {
-                icon: "🎯",
-                title: "Always Updated",
-                description: "Real-time updates show your current class, next class, and remaining time in each period."
-              },
-              {
-                icon: "🌍",
-                title: "Multi-Timezone",
-                description: "Perfect for students with different schedules or those who travel between time zones."
-              },
-              {
-                icon: "📚",
-                title: "All Schools Supported",
-                description: "Works with any NYC school schedule format. From block schedules to traditional periods."
-              },
-              {
-                icon: "🔒",
-                title: "Privacy First",
-                description: "Your schedule data stays private. No accounts required, no data collection, just your schedule when you need it."
-              }
-            ].map((feature, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <Card className="bg-white/5 border-white/10 hover:bg-white/10 transition-all duration-300">
-                  <CardHeader>
-                    <div className="w-12 h-12 bg-white/10 rounded-lg flex items-center justify-center mb-4">
-                      <span className="text-2xl">{feature.icon}</span>
-                    </div>
-                    <CardTitle className="text-white">{feature.title}</CardTitle>
-                    <CardDescription className="text-white/70">
-                      {feature.description}
-                    </CardDescription>
-                  </CardHeader>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
+          <HoverEffect items={[
+            {
+              title: "📱 No Phone Needed",
+              description: "Access your schedule on any Chromebook or school computer. No need to sneak your phone out during class.",
+              link: "#"
+            },
+            {
+              title: "⚡ Instant Setup",
+              description: "Upload a photo of your schedule and get a beautiful, personalized app in under 30 seconds.",
+              link: "#"
+            },
+            {
+              title: "🎯 Always Updated",
+              description: "Real-time updates show your current class, next class, and remaining time in each period.",
+              link: "#"
+            },
+            {
+              title: "🌍 Multi-Timezone",
+              description: "Perfect for students with different schedules or those who travel between time zones.",
+              link: "#"
+            },
+            {
+              title: "📚 All Schools Supported",
+              description: "Works with any NYC school schedule format. From block schedules to traditional periods.",
+              link: "#"
+            },
+            {
+              title: "🔒 Privacy First",
+              description: "Your schedule data stays private. No accounts required, no data collection, just your schedule when you need it.",
+              link: "#"
+            }
+          ]} />
         </div>
       </section>
 
@@ -371,6 +352,7 @@ function App() {
         </div>
       </section>
 
+
       {/* CTA Section */}
       <section id="get-started" className="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 bg-white/5 relative">
         <div className="max-w-4xl mx-auto text-center">
@@ -394,9 +376,9 @@ function App() {
                 size="lg" 
                 variant="outline" 
                 className="border-white text-white bg-transparent hover:bg-white hover:text-blue-600"
-                onClick={() => window.open('https://github.com/sebastiantheprogammer/schoolscheduleapp', '_blank')}
+                onClick={handleDemoClick}
               >
-                View on GitHub
+                View Demo
               </Button>
             </div>
           </motion.div>

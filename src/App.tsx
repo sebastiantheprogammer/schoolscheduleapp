@@ -114,7 +114,7 @@ function App() {
                     setIsMobileMenuOpen(false)
                     handleDemoClick()
                   }}
-                  className="relative text-neutral-300 hover:text-white transition-colors cursor-pointer"
+                  className="relative text-white hover:text-white/80 transition-colors cursor-pointer"
                 >
                   <span className="block">{item.name}</span>
                 </button>
@@ -123,7 +123,7 @@ function App() {
                   key={`mobile-link-${idx}`}
                   href={item.link}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="relative text-neutral-300 hover:text-white transition-colors"
+                  className="relative text-white hover:text-white/80 transition-colors"
                 >
                   <span className="block">{item.name}</span>
                 </a>

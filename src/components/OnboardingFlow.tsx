@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from "@/components/ui/button"
-import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardDescription, CardHeader } from "@/components/ui/card"
 import { BackgroundBeams } from "@/components/ui/background-beams"
 import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect"
 import { LoginPage } from './LoginPage'
@@ -14,7 +14,7 @@ interface OnboardingFlowProps {
 
 export function OnboardingFlow({ onComplete, onBack }: OnboardingFlowProps) {
   const [currentStep, setCurrentStep] = useState(0)
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [isLoggedIn] = useState(false)
   const [showDemo, setShowDemo] = useState(false)
 
   const steps = [

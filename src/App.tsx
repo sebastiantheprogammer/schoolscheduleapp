@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
 import { 
@@ -10,7 +10,6 @@ import {
 import { BackgroundBeams } from "@/components/ui/background-beams"
 import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect"
 import { OnboardingFlow } from "@/components/OnboardingFlow"
-import ScheduleApp from "@/components/ScheduleApp"
 import {
   Navbar,
   NavBody,
@@ -23,7 +22,7 @@ import {
   MobileNavMenu,
 } from "@/components/ui/resizable-navbar"
 import { HoverEffect } from "@/components/ui/card-hover-effect"
-import { ScheduleDemo } from "@/components/ScheduleDemo"
+import ScheduleDemo from "@/components/ScheduleDemo"
 
 function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)

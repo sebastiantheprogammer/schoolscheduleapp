@@ -14,7 +14,7 @@ interface OnboardingFlowProps {
 
 export function OnboardingFlow({ onComplete, onBack }: OnboardingFlowProps) {
   const [currentStep, setCurrentStep] = useState(0)
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [, setIsLoggedIn] = useState(false)
   const [showDemo, setShowDemo] = useState(false)
 
   const steps = [

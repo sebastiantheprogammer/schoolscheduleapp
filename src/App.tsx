@@ -156,25 +156,25 @@ function App() {
       </Navbar>
 
       {/* Hero Section */}
-      <HeroHighlight className="pt-20 pb-12 px-4 sm:px-6 lg:px-8">
+      <HeroHighlight className="pt-16 sm:pt-20 pb-8 sm:pb-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <Badge variant="outline" className="mb-6 border-white/20 text-white/80">
+            <Badge variant="outline" className="mb-4 sm:mb-6 border-white/20 text-white/80 text-sm sm:text-base">
               🚫 No Phones? No Problem!
             </Badge>
           </motion.div>
           
           <motion.div
-            className="mb-6 px-4"
+            className="mb-4 sm:mb-6 px-2 sm:px-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold">
+            <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight">
               <TypewriterEffectSmooth words={[
                 { text: "Turn", className: "text-white" },
                 { text: "Your", className: "text-white" },
@@ -188,7 +188,7 @@ function App() {
           </motion.div>
           
           <motion.p 
-            className="text-lg sm:text-xl text-white/70 max-w-3xl mx-auto mb-8 leading-relaxed px-4"
+            className="text-base sm:text-lg md:text-xl text-white/70 max-w-3xl mx-auto mb-6 sm:mb-8 leading-relaxed px-2 sm:px-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
@@ -199,7 +199,7 @@ function App() {
           </motion.p>
 
           <motion.div 
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12 px-4"
+            className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-8 sm:mb-12 px-2 sm:px-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
@@ -223,22 +223,22 @@ function App() {
 
           {/* Stats */}
           <motion.div 
-            className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 max-w-4xl mx-auto px-4"
+            className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-4xl mx-auto px-2 sm:px-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
           >
-            <div className="text-center">
-              <div className="text-2xl sm:text-3xl font-bold text-white">500+</div>
-              <div className="text-white/60 text-sm sm:text-base">NYC Students Helped</div>
+            <div className="text-center py-2">
+              <div className="text-xl sm:text-2xl md:text-3xl font-bold text-white">500+</div>
+              <div className="text-white/60 text-xs sm:text-sm md:text-base">NYC Students Helped</div>
             </div>
-            <div className="text-center">
-              <div className="text-2xl sm:text-3xl font-bold text-white">30s</div>
-              <div className="text-white/60 text-sm sm:text-base">Average Setup Time</div>
+            <div className="text-center py-2">
+              <div className="text-xl sm:text-2xl md:text-3xl font-bold text-white">30s</div>
+              <div className="text-white/60 text-xs sm:text-sm md:text-base">Average Setup Time</div>
             </div>
-            <div className="text-center">
-              <div className="text-2xl sm:text-3xl font-bold text-white">100%</div>
-              <div className="text-white/60 text-sm sm:text-base">Chromebook Compatible</div>
+            <div className="text-center py-2">
+              <div className="text-xl sm:text-2xl md:text-3xl font-bold text-white">100%</div>
+              <div className="text-white/60 text-xs sm:text-sm md:text-base">Chromebook Compatible</div>
             </div>
           </motion.div>
         </div>

@@ -28,6 +28,7 @@ interface NavItemsProps {
   }[];
   className?: string;
   onItemClick?: () => void;
+  onDemoClick?: () => void;
 }
 
 interface MobileNavProps {
@@ -112,7 +113,7 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
   );
 };
 
-export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
+export const NavItems = ({ items, className, onItemClick, onDemoClick }: NavItemsProps) => {
   return (
     <motion.div
       className={cn(
@@ -121,14 +122,24 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
       )}
     >
       {items.map((item, idx) => (
-        <a
-          onClick={onItemClick}
-          className="relative px-4 py-2 text-white"
-          key={`link-${idx}`}
-          href={item.link}
-        >
-          <span className="relative z-20">{item.name}</span>
-        </a>
+        item.link === "demo" ? (
+          <button
+            onClick={onDemoClick}
+            className="relative px-4 py-2 text-white cursor-pointer"
+            key={`link-${idx}`}
+          >
+            <span className="relative z-20">{item.name}</span>
+          </button>
+        ) : (
+          <a
+            onClick={onItemClick}
+            className="relative px-4 py-2 text-white"
+            key={`link-${idx}`}
+            href={item.link}
+          >
+            <span className="relative z-20">{item.name}</span>
+          </a>
+        )
       ))}
     </motion.div>
   );
@@ -256,8 +267,8 @@ export const NavbarLogo = () => {
       href="#"
       className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal text-white"
     >
-      <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-        <span className="text-white font-bold text-sm">SS</span>
+      <div className="w-8 h-8 bg-white border border-black rounded-lg flex items-center justify-center">
+        <span className="text-black font-bold text-sm">SS</span>
       </div>
       <span className="font-medium text-white">ScheduleSnap</span>
     </a>
